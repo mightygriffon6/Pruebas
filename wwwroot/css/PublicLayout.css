@@ -1,0 +1,31 @@
+﻿.layout-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.top-row {
+    background-color: rgb(0,108,125);
+    height: 10%;
+}
+
+.middle-row {
+    background-image: url('../images/fondoLogin.jpg'); 
+    background-size: cover;
+    background-position: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    padding: 20px;
+    background: rgba(255, 255, 255); 
+    border-radius: 10px;
+}
+
+.bottom-row {
+    background-color: rgb(20,56,127);
+    height: 10%;
+}

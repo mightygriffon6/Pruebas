@@ -1,0 +1,30 @@
+﻿:root {
+    /* Color de fondo de la barra lateral */
+    --bb-sidebar-background-color: rgb(20,56,127);
+    /* color recuadro del titulo*/
+    --bb-sidebar-top-row-background-color: rgb(0,108,125);
+    /* Color del borde superior de la fila de la barra lateral */
+    --bb-sidebar-top-row-border-color: white;
+    /*Texto del titulo*/
+    --bb-sidebar-title-text-color: white;
+    /* Color del borde del contenido dentro de la barra lateral */
+    --bb-sidebar-content-border-color: white;
+
+
+    /*ITEMS DE LA BARRA*/
+    /* Color del texto de los elementos de navegación en la barra lateral */
+    --bb-sidebar-nav-item-text-color: white;
+    /* Color RGB del texto de los elementos de navegación cuando están activos */
+    --bb-sidebar-nav-item-text-active-color-rgb: white;
+    /* Color del texto de los elementos de navegación cuando se realiza un hover sobre ellos */
+    --bb-sidebar-nav-item-text-hover-color: white;
+    /* Color del texto de los elementos de navegación cuando están activos */
+    --bb-sidebar-nav-item-text-active-color: white;
+    /* Color de fondo de los elementos de navegación cuando se realiza un hover sobre ellos */
+    --bb-sidebar-nav-item-background-hover-color: rgb(29, 82, 189);
+    /* Color de fondo de los grupos de elementos de navegación en la barra lateral */
+    --bb-sidebar-nav-item-group-background-color: rgb(30, 70, 155);
+}
+/*rgb(20,56,127) azul raro
+rgb(0,108,125) verde azulado
+*/

@@ -1,0 +1,250 @@
+﻿@page "/Periodo"
+<link href="css/componentes.css" rel="stylesheet" />
+<h1>PERIODO</h1>
+<Modal @ref="modal" UseStaticBackdrop="true" CloseOnEscape="false" HeaderCssClass="custom-modal-header">
+    <HeaderTemplate>
+        @TituloModal
+    </HeaderTemplate>
+    <BodyTemplate >    
+            <div class="row mb-3 justify-content-center" >
+            <div class="col-md-3">
+                <label for="codigo" class="form-label">Código:</label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="codigo" placeholder="2024-01" disabled="true" />
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center">
+            <div class="col-md-3 ">
+                <label for="fechaInicio" class="form-label">Fecha Inicio:</label>
+            </div>
+            <div class="col-md-6 ">
+                <input type="date" class="form-control" id="fechaInicio" placeholder="Enter Date" />
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center">
+            <div class="col-md-3">
+                <label for="fechaInicio" class="form-label">Fecha Fin:</label>
+            </div>
+            <div class="col-md-6 ">
+                <input type="date" class="form-control" id="fechaInicio" placeholder="Enter Date" />
+            </div>
+        </div>
+        
+    </BodyTemplate>
+    <FooterTemplate>
+        <Button Color="ButtonColor.Secondary" @onclick="OnHideModalClick">Cancelar</Button>
+        <Button Class="custom-primary-button" Color="ButtonColor.Primary">Guardar</Button>
+    </FooterTemplate>
+</Modal>
+<br/>
+<ConfirmDialog @ref="dialog"  />
+<div class="mb-3">
+    <Button Class="custom-primary-button" Color="ButtonColor.Primary" @onclick="Nuevo"> <Icon Name="IconName.PlusCircle" /> Nuevo</Button>
+</div>
+
+<Grid TItem="PeriodoNormal"
+      Class="table table-hover  table-bordered table-striped"
+      Data="periodos"
+      AllowDetailView="true"
+      AllowPaging="true"
+      PageSize="5"
+      HeaderRowCssClass="custom-header-grid"
+      Responsive="true"
+      >
+
+    <GridColumns>
+        <GridColumn TItem="PeriodoNormal" HeaderText="Id" PropertyName="id">
+            @context.id
+        </GridColumn>
+        <GridColumn TItem="PeriodoNormal" HeaderText="Fecha Inicio" PropertyName="fechInicio">
+            @context.fechInicio
+        </GridColumn>
+        <GridColumn TItem="PeriodoNormal" HeaderText="Fecha Fin" PropertyName="fechFin">
+            @context.fechFin
+        </GridColumn>
+        <GridColumn TItem="PeriodoNormal" HeaderText="Estado" PropertyName="estado">
+            @context.estado
+        </GridColumn>
+    </GridColumns>
+
+    <GridDetailView TItem="PeriodoNormal">
+        <Grid TItem="PeriodoNormal"
+              Class="table table-hover border-top"
+              Data="periodos"
+              FixedHeader="true"
+              Height="240"
+              Unit="Unit.Px"
+              Responsive="true">
+
+            <GridColumns>
+                <GridColumn TItem="PeriodoNormal" Context="periodo" HeaderText="Id" PropertyName="id">
+                    @periodo.id
+                </GridColumn>
+                <GridColumn TItem="PeriodoNormal" Context="periodo" HeaderText="Fecha Inicio" PropertyName="fechInicio">
+                    @periodo.fechInicio
+                </GridColumn>
+                <GridColumn TItem="PeriodoNormal" Context="periodo" HeaderText="Fecha Fin" PropertyName="fechFin">
+                    @periodo.fechFin
+                </GridColumn>
+                <GridColumn TItem="PeriodoNormal" Context="periodo" HeaderText="Estado" PropertyName="estado">
+                    @periodo.estado
+                    </GridColumn>
+                <GridColumn TItem="PeriodoNormal" Context="periodo" HeaderText="Acciones">
+                    <Button Class="custom-primary-button" Color="ButtonColor.Primary" TooltipTitle="Editar" @onclick="Editar" Size="ButtonSize.Small"><Icon Name=" IconName.Pencil " /></Button>
+                    <Button Color="ButtonColor.Danger" TooltipTitle="Borrar Periodo" @onclick="BorrarPeriodo" Size="ButtonSize.Small"><Icon Name=" IconName.Trash" /></Button>
+                    <Button Color="ButtonColor.Danger" TooltipTitle="Bloquear Matrículas" @onclick="BloqMatriculas" Size="ButtonSize.Small"><Icon Name="IconName.PersonSquare" /></Button>
+                    <Button Color="ButtonColor.Danger" TooltipTitle="Bloquear Pagos" @onclick="BloqPagos" Size="ButtonSize.Small"><Icon Name="IconName.Coin" /></Button>
+                    <Button Color="ButtonColor.Danger" TooltipTitle="Bloquear Notas y Asistencias" @onclick="BloqNotasAsistencias" Size="ButtonSize.Small"><Icon Name="IconName.PersonVCardFill" /></Button>
+                </GridColumn>
+            </GridColumns>
+        </Grid>
+    </GridDetailView>
+</Grid>
+@code {
+    public class PeriodoNormal
+    {
+        public int id;
+        public DateOnly fechInicio;
+        public DateOnly fechFin;
+        public string estado;
+
+        public PeriodoNormal(int id, DateOnly fechInicio, DateOnly fechFin, string estado)
+        {
+            this.id = id;
+            this.fechInicio = fechInicio;
+            this.fechFin = fechFin;
+            this.estado = estado;
+        }
+    }
+    private List<PeriodoNormal> periodos = new List<PeriodoNormal>
+    {
+        new PeriodoNormal(1, new DateOnly(2023, 1, 1), new DateOnly(2023, 12, 31), "Activo"),
+        new PeriodoNormal(2, new DateOnly(2024, 2, 1), new DateOnly(2024, 11, 30), "Inactivo"),
+        new PeriodoNormal(3, new DateOnly(2025, 3, 1), new DateOnly(2025, 10, 31), "Activo"),
+        new PeriodoNormal(4, new DateOnly(2026, 4, 1), new DateOnly(2026, 9, 30), "Pendiente"),
+        new PeriodoNormal(5, new DateOnly(2027, 5, 1), new DateOnly(2027, 8, 31), "Completado"),
+        new PeriodoNormal(6, new DateOnly(2028, 6, 1), new DateOnly(2028, 7, 31), "Activo"),
+        new PeriodoNormal(7, new DateOnly(2029, 1, 1), new DateOnly(2029, 12, 31), "Activo"),
+        new PeriodoNormal(8, new DateOnly(2030, 2, 1), new DateOnly(2030, 11, 30), "Inactivo"),
+        new PeriodoNormal(9, new DateOnly(2031, 3, 1), new DateOnly(2031, 10, 31), "Activo"),
+        new PeriodoNormal(10, new DateOnly(2032, 4, 1), new DateOnly(2032, 9, 30), "Pendiente"),
+        new PeriodoNormal(11, new DateOnly(2033, 5, 1), new DateOnly(2033, 8, 31), "Completado"),
+        new PeriodoNormal(12, new DateOnly(2034, 6, 1), new DateOnly(2034, 7, 31), "Activo"),
+        new PeriodoNormal(13, new DateOnly(2035, 1, 1), new DateOnly(2035, 12, 31), "Activo"),
+        new PeriodoNormal(14, new DateOnly(2036, 2, 1), new DateOnly(2036, 11, 30), "Inactivo"),
+        new PeriodoNormal(15, new DateOnly(2037, 3, 1), new DateOnly(2037, 10, 31), "Activo"),
+        new PeriodoNormal(16, new DateOnly(2038, 4, 1), new DateOnly(2038, 9, 30), "Pendiente"),
+        new PeriodoNormal(17, new DateOnly(2039, 5, 1), new DateOnly(2039, 8, 31), "Completado"),
+        new PeriodoNormal(18, new DateOnly(2040, 6, 1), new DateOnly(2040, 7, 31), "Activo"),
+        new PeriodoNormal(19, new DateOnly(2041, 1, 1), new DateOnly(2041, 12, 31), "Activo"),
+        new PeriodoNormal(20, new DateOnly(2042, 2, 1), new DateOnly(2042, 11, 30), "Inactivo")
+    };
+
+
+    protected string TituloModal = "";
+    protected string tituloConfDialg="", mensajeConfDialg="";
+    protected string accion = "";
+    protected Button botonaccion=default!;
+    private Modal modal = default!;
+    private ConfirmDialog dialog = default!;
+
+    private void Nuevo()
+    {
+        TituloModal = "Crear nuevo Periodo";
+        OnShowModalClick();
+    }
+    private void Editar()
+    {
+        TituloModal = "Editar Periodo";
+        OnShowModalClick();
+    }
+
+
+
+    private async Task ShowConfirmationAsync()
+    {
+        var options = new ConfirmDialogOptions
+            {
+                YesButtonText = "SI",
+                YesButtonColor = ButtonColor.Danger,
+                NoButtonText = "CANCELAR",
+                NoButtonColor = ButtonColor.Secondary,
+                HeaderCssClass = "custom-dialog-header",
+            };
+
+        var confirmation = await dialog.ShowAsync(
+            title: tituloConfDialg,
+            message1: mensajeConfDialg,
+            message2: "¿Quieres Continuar?",
+            confirmDialogOptions: options);
+
+        if (confirmation)
+        {
+            switch (accion)
+            {
+                case "borrar":
+                    break;
+                case "bloquearMat":
+                    break;
+                case "bloquearPag":
+                    break;
+                case "bloquearNotasAsist":
+                    break;
+            }
+        }
+        else
+        {
+            switch (accion)
+            {
+                case "borrar":
+                    break;
+                case "bloquearMat":
+                    break;
+                case "bloquearPag":
+                    break;
+                case "bloquearNotasAsist":
+                    break;
+            }
+        }
+    }
+    private void BloqMatriculas()
+    {
+        tituloConfDialg = "¿Estás seguro que quieres bloquear las matriculas?";
+        mensajeConfDialg = "Bloquearás irreversiblemente las matrículas de este periodo";
+        accion = "bloquearMat";
+        ShowConfirmationAsync();
+    }
+    private void BloqPagos()
+    {
+        tituloConfDialg = "¿Estás seguro que quieres bloquear los pagos de este periodo?";
+        mensajeConfDialg = "Bloquearás irreversiblemente los pagos de este periodo";
+        accion = "bloquearPag";
+        ShowConfirmationAsync();
+    }
+    private void BloqNotasAsistencias()
+    {
+        tituloConfDialg = "¿Estás seguro que quieres bloquear las notas y las asistencias de este periodo?";
+        mensajeConfDialg = "Bloquearás irreversiblemente el registro de notas y asistencias de este periodo";
+        accion = "bloquearNotasAsist";
+        ShowConfirmationAsync();
+    
+    }
+    private void BorrarPeriodo()
+    {
+        tituloConfDialg = "¿Estás seguro que quieres Eliminar este periodo?";
+        mensajeConfDialg = "Eliminarás el periodo actual";
+        accion = "borrar";
+        ShowConfirmationAsync();
+    }
+
+    private async Task OnShowModalClick()
+    {
+        await modal.ShowAsync();
+    }
+
+    private async Task OnHideModalClick()
+    {
+        await modal.HideAsync();
+    }
+}

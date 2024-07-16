@@ -1,0 +1,16 @@
+﻿.custom-dialog-header {
+    background-color: rgb(220, 53, 69)!important;
+    color: white;
+}
+.custom-modal-header {
+    background-color: rgb(0,108,125) !important;
+    color: white!important;
+}
+.custom-header-grid {
+    background-color: rgb(0,108,125); 
+    color: white; 
+}
+.custom-primary-button {
+    background-color: rgb(20,56,127);
+}
+

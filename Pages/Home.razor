@@ -1,0 +1,110 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+<link href="css/componentes.css" rel="stylesheet" />
+<h1>El siguiente mes te ofrecemos</h1>
+<div class="mb-3">
+    <Button @onclick="ShowGrid" class="@((showGrid) ? "active" : "")" Color="ButtonColor.Secondary"><Icon Name="IconName.Grid" /></Button>
+    <Button @onclick="ShowTable" class="@((!showGrid) ? "active" : "")" Color="ButtonColor.Secondary"><Icon Name="IconName.ListTask"></Icon></Button>
+</div>
+@if (showGrid){
+<div class="row" >
+@foreach (var item in tarjetas)
+{
+    <div class="col-sm-4 mb-3">
+    <Card Style="width:22rem;">
+        <img class="rounded-top " src=@item.img height="200vh" />
+        <CardBody >
+            <CardTitle>@item.curso</CardTitle>
+                <CardSubTitle Class="mb-2 text-muted">@item.local</CardSubTitle>
+                <CardSubTitle Class="mb-2 text-muted">S/.@item.costo.ToString()</CardSubTitle>
+                <CardSubTitle Class="mb-2 text-muted"> @item.inicio - @item.final</CardSubTitle>
+            <Button Color="ButtonColor.Primary" To="#" Type="ButtonType.Link">Matricularse</Button>
+        </CardBody>
+    </Card>
+    </div>
+}
+</div>
+}
+else{
+<Grid TItem="Tarjeta"
+      Class="table table-hover  table-bordered table-striped"
+      Data="tarjetas"
+      AllowPaging="true"
+      PageSize="8"
+      HeaderRowCssClass="custom-header-grid"
+      Responsive="true">
+
+        <GridColumns>
+            <GridColumn TItem="Tarjeta" HeaderText="Curso" PropertyName="curso">
+                @context.curso
+            </GridColumn>
+            <GridColumn TItem="Tarjeta" HeaderText="Costo" PropertyName="costo">
+                S/.@context.costo.ToString("c") <!-- Formatea como moneda -->
+            </GridColumn>
+            <GridColumn TItem="Tarjeta" HeaderText="Local" PropertyName="local">
+                @context.local
+            </GridColumn>
+            <GridColumn TItem="Tarjeta" HeaderText="Horario" PropertyName="horario">
+                @context.inicio - @context.final<!-- Muestra solo la fecha -->
+            </GridColumn>
+            <GridColumn TItem="Tarjeta" Context="tarjeta" HeaderText="Matricula">
+                <Button Color="ButtonColor.Primary" To="#" Type="ButtonType.Link">Matricularse</Button>
+            </GridColumn>
+
+        </GridColumns>
+</Grid>
+}
+@code{
+    bool showGrid = true;
+
+    void ShowGrid()
+    {
+        if (!showGrid)
+        {
+            showGrid = true;
+        }
+    }
+
+    void ShowTable()
+    {
+        if (showGrid)
+        {
+            showGrid = false;
+        }
+    }
+    public class Tarjeta
+    {
+        public decimal costo { get; set; }
+        public string img { get; set; } // Puedes usar string para el nombre de la imagen
+        public string curso { get; set; }
+        public string local { get; set; }
+        public TimeSpan inicio { get; set; }
+        public TimeSpan final { get; set; }
+
+        public Tarjeta(decimal costo, string img, string curso, string local, TimeSpan inicio, TimeSpan final)
+        {
+            this.costo = costo;
+            this.img = img;
+            this.curso = curso;
+            this.local = local;
+            this.inicio = inicio;
+            this.final = final;
+        }
+    }
+    List<Tarjeta> tarjetas;
+
+    protected override void OnInitialized()
+    {
+        tarjetas = new List<Tarjeta>
+        {
+            new Tarjeta(24.45m, "images/excel.jpg", "Excel Básico", "San Agustin", new TimeSpan(9, 0, 0), new TimeSpan(12, 0, 0)),
+            new Tarjeta(150, "images/word.png", "Word Intermedio", "Garaycochea", new TimeSpan(14, 0, 0), new TimeSpan(17, 0, 0)),
+            new Tarjeta(80, "images/powerpoint.jpg", "Power Point Basico", "San Agustin", new TimeSpan(18, 0, 0), new TimeSpan(20, 0, 0)),
+            new Tarjeta(150, "images/contable.png", "Programacion contable", "Garaycochea", new TimeSpan(14, 0, 0), new TimeSpan(17, 0, 0)),
+            new Tarjeta(80, "images/photoshop.jpg", "Photshopp Intermedio", "Garaycochea", new TimeSpan(18, 0, 0), new TimeSpan(20, 0, 0)),
+            new Tarjeta(150, "images/SQL.png", "SQL Básico", "San Agustin", new TimeSpan(14, 0, 0), new TimeSpan(17, 0, 0)),
+            new Tarjeta(80, "images/imagen3.jpg", "Curso de Inglés", "San Agustin", new TimeSpan(18, 0, 0), new TimeSpan(20, 0, 0))
+        };
+    }
+}
