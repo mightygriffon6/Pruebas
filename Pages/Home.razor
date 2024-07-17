@@ -17,7 +17,7 @@
         <CardBody >
             <CardTitle>@item.curso</CardTitle>
                 <CardSubTitle Class="mb-2 text-muted">@item.local</CardSubTitle>
-                <CardSubTitle Class="mb-2 text-muted">S/.@item.costo.ToString()</CardSubTitle>
+                        <CardSubTitle Class="mb-2 text-muted">S/.@item.costo.ToString("0.00")</CardSubTitle>
                 <CardSubTitle Class="mb-2 text-muted"> @item.inicio - @item.final</CardSubTitle>
             <Button Color="ButtonColor.Primary" To="#" Type="ButtonType.Link">Matricularse</Button>
         </CardBody>
@@ -40,7 +40,7 @@ else{
                 @context.curso
             </GridColumn>
             <GridColumn TItem="Tarjeta" HeaderText="Costo" PropertyName="costo">
-                S/.@context.costo.ToString("c") <!-- Formatea como moneda -->
+                S/.@context.costo.ToString("0.00") 
             </GridColumn>
             <GridColumn TItem="Tarjeta" HeaderText="Local" PropertyName="local">
                 @context.local
