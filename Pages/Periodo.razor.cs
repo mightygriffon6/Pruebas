@@ -14,6 +14,7 @@ namespace Pruebas.Pages
         private ConfirmDialog dialog = default!;
         private DateTime primerDiaMes { get; set; }
         private DateTime ultimoDiaMes { get; set; }
+        
 
         private void CambioMes(ChangeEventArgs e)
         {
@@ -24,22 +25,21 @@ namespace Pruebas.Pages
                 ultimoDiaMes = lastDayOfMonth;
             }
 
-
         }
 
-        private void Nuevo()
+        private async void Nuevo()
         {
             accion = "nuevo";
             codEditar = false;
             TituloModal = "Crear nuevo Periodo";
-            OnShowModalClick();
+            await OnShowModalClick();
         }
-        private void Editar()
+        private async void Editar()
         {
             accion = "editar";
             codEditar = true;
             TituloModal = "Editar Periodo";
-            OnShowModalClick();
+            await OnShowModalClick();
         }
         private async Task ShowConfirmationAsync()
         {
@@ -87,35 +87,36 @@ namespace Pruebas.Pages
                 }
             }
         }
-        private void BloqMatriculas()
+        private async void BloqMatriculas()
         {
             tituloConfDialg = "¿Estás seguro que quieres bloquear las matriculas?";
             mensajeConfDialg = "Bloquearás irreversiblemente las matrículas de este periodo";
             accion = "bloquearMat";
-            ShowConfirmationAsync();
+            await ShowConfirmationAsync();
         }
-        private void BloqPagos()
+        private async void BloqPagos()
         {
             tituloConfDialg = "¿Estás seguro que quieres bloquear los pagos de este periodo?";
             mensajeConfDialg = "Bloquearás irreversiblemente los pagos de este periodo";
             accion = "bloquearPag";
-            ShowConfirmationAsync();
+            await ShowConfirmationAsync();
         }
-        private void BloqNotasAsistencias()
+        private async void BloqNotasAsistencias()
         {
             tituloConfDialg = "¿Estás seguro que quieres bloquear las notas y las asistencias de este periodo?";
             mensajeConfDialg = "Bloquearás irreversiblemente el registro de notas y asistencias de este periodo";
             accion = "bloquearNotasAsist";
-            ShowConfirmationAsync();
+            await ShowConfirmationAsync();
 
         }
-        private void BorrarPeriodo()
+        private async void BorrarPeriodo()
         {
             tituloConfDialg = "¿Estás seguro que quieres Eliminar este periodo?";
             mensajeConfDialg = "Eliminarás el periodo actual";
             accion = "borrar";
-            ShowConfirmationAsync();
+            await ShowConfirmationAsync();
         }
+
         private List<PeriodoNormal> periodos = new List<PeriodoNormal>
         {
         new PeriodoNormal(1, new DateOnly(2023, 1, 1), new DateOnly(2023, 12, 31), "Activo"),
@@ -132,12 +133,7 @@ namespace Pruebas.Pages
         new PeriodoNormal(12, new DateOnly(2034, 6, 1), new DateOnly(2034, 7, 31), "Activo"),
         new PeriodoNormal(13, new DateOnly(2035, 1, 1), new DateOnly(2035, 12, 31), "Activo"),
         new PeriodoNormal(14, new DateOnly(2036, 2, 1), new DateOnly(2036, 11, 30), "Inactivo"),
-        new PeriodoNormal(15, new DateOnly(2037, 3, 1), new DateOnly(2037, 10, 31), "Activo"),
-        new PeriodoNormal(16, new DateOnly(2038, 4, 1), new DateOnly(2038, 9, 30), "Pendiente"),
-        new PeriodoNormal(17, new DateOnly(2039, 5, 1), new DateOnly(2039, 8, 31), "Completado"),
-        new PeriodoNormal(18, new DateOnly(2040, 6, 1), new DateOnly(2040, 7, 31), "Activo"),
-        new PeriodoNormal(19, new DateOnly(2041, 1, 1), new DateOnly(2041, 12, 31), "Activo"),
-        new PeriodoNormal(20, new DateOnly(2042, 2, 1), new DateOnly(2042, 11, 30), "Inactivo")
+        new PeriodoNormal(15, new DateOnly(2042, 2, 1), new DateOnly(2042, 11, 30), "Inactivo")
     };
 
         private async Task OnShowModalClick()
