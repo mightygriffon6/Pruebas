@@ -3,8 +3,8 @@
     color: white;
 }
 .custom-modal-header {
-    background-color: rgb(0,108,125) !important;
-    color: white!important;
+    background-color: rgb(220, 53, 69) !important;
+    color: white !important;
 }
 .custom-header-grid {
     background-color: rgb(0,108,125); 
@@ -12,5 +12,8 @@
 }
 .custom-primary-button {
     background-color: rgb(20,56,127);
+}
+.custom-card-title{
+    font-weight:bold;
 }
 
