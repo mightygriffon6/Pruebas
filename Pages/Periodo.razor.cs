@@ -10,6 +10,7 @@ namespace Pruebas.Pages
         protected string accion = "";
         protected Button botonaccion = default!;
         private Modal modal = default!;
+        private bool codEditar = false;
         private ConfirmDialog dialog = default!;
         private DateTime primerDiaMes { get; set; }
         private DateTime ultimoDiaMes { get; set; }
@@ -29,12 +30,14 @@ namespace Pruebas.Pages
         private void Nuevo()
         {
             accion = "nuevo";
+            codEditar = false;
             TituloModal = "Crear nuevo Periodo";
             OnShowModalClick();
         }
         private void Editar()
         {
             accion = "editar";
+            codEditar = true;
             TituloModal = "Editar Periodo";
             OnShowModalClick();
         }
