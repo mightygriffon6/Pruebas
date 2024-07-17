@@ -11,7 +11,7 @@
                 <label for="codigo" class="form-label">Código:</label>
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control" id="codigo" placeholder="2024-01" disabled="true" />
+                <input type="month" class="form-control" id="codigo" placeholder="2024-01"/>
             </div>
         </div>
         <div class="row mb-3 justify-content-center">
@@ -24,10 +24,21 @@
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-md-3">
-                <label for="fechaInicio" class="form-label">Fecha Fin:</label>
+                <label for="fechaFin" class="form-label">Fecha Fin:</label>
             </div>
             <div class="col-md-6 ">
-                <input type="date" class="form-control" id="fechaInicio" placeholder="Enter Date" />
+                <input type="date" class="form-control" id="fechaFin" placeholder="Enter Date" />
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center">
+            <div class="col-md-3">
+                <label for="Estado" class="form-label">Estado:</label>
+            </div>
+            <div class="col-md-6 ">
+                <select type="text" class="form-control" list="estados" >
+                    <option value="Vigente">Vigente</option>
+                    <option value="Cerrado">Cerrado</option>
+                </select>
             </div>
         </div>
         
@@ -151,11 +162,13 @@
 
     private void Nuevo()
     {
+        accion = "nuevo";
         TituloModal = "Crear nuevo Periodo";
         OnShowModalClick();
     }
     private void Editar()
     {
+        accion = "editar";
         TituloModal = "Editar Periodo";
         OnShowModalClick();
     }
