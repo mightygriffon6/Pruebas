@@ -1,4 +1,5 @@
 ﻿using BlazorBootstrap;
+using Microsoft.AspNetCore.Components;
 
 namespace Pruebas.Pages
 {
@@ -10,8 +11,21 @@ namespace Pruebas.Pages
         protected Button botonaccion = default!;
         private Modal modal = default!;
         private ConfirmDialog dialog = default!;
-        
-        
+        private DateTime primerDiaMes { get; set; }
+        private DateTime ultimoDiaMes { get; set; }
+
+        private void CambioMes(ChangeEventArgs e)
+        {
+            if (DateTime.TryParse($"{e.Value}-01", out DateTime date))
+            {
+                primerDiaMes = date;
+                var lastDayOfMonth = new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
+                ultimoDiaMes = lastDayOfMonth;
+            }
+
+
+        }
+
         private void Nuevo()
         {
             accion = "nuevo";

@@ -11,7 +11,7 @@
                 <label for="codigo" class="form-label">Código:</label>
             </div>
             <div class="col-md-6">
-                <input type="month" class="form-control" id="codigo" placeholder="2024-01"/>
+                <input type="month" @onchange="CambioMes" class="form-control" id="codigo"/>
             </div>
         </div>
         <div class="row mb-3 justify-content-center">
@@ -19,7 +19,7 @@
                 <label for="fechaInicio" class="form-label">Fecha Inicio:</label>
             </div>
             <div class="col-md-6 ">
-                <input type="date" class="form-control" id="fechaInicio" placeholder="Enter Date" />
+                <input type="date" @bind="primerDiaMes" class="form-control" id="fechaInicio" placeholder="Enter Date" />
             </div>
         </div>
         <div class="row mb-3 justify-content-center">
@@ -27,7 +27,7 @@
                 <label for="fechaFin" class="form-label">Fecha Fin:</label>
             </div>
             <div class="col-md-6 ">
-                <input type="date" class="form-control" id="fechaFin" placeholder="Enter Date" />
+                <input type="date" @bind="ultimoDiaMes" class="form-control" id="fechaFin" placeholder="Enter Date" />
             </div>
         </div>
         <div class="row mb-3 justify-content-center">
