@@ -4,13 +4,13 @@
 <link href="css/sidebar.css" rel="stylesheet" />
 <div class="bb-page">
 
-    <Sidebar @ref="sidebar"
+    <Sidebar2 @ref="sidebar"
              Href="/"
              Title="InfoUnsa"
-             DataProvider="SidebarDataProvider" >
-         </Sidebar>
+             DataProvider="Sidebar2DataProvider"/>       
     <main>
-        <div class="bb-top-row px-4 d-flex justify-content-end">
+        <div class="bb-top-row px-4 d-flex justify-content-between bb-top-row px-4 d-flex justify-content-between superior-row">
+            <Icon Name="IconName.List" role="button" @onclick="ToggleSidebar" />
             <a href="/login" target="_blank">Ingresar/Registrarse</a>
         </div>
         <article class="content px-4">
@@ -19,49 +19,9 @@
             </div>
         </article>
     </main>
-
+    
 </div>
 
 @code {
-    private Sidebar sidebar = default!;
-    private IEnumerable<NavItem> navItems = default!;
-
-    private async Task<SidebarDataProviderResult> SidebarDataProvider(SidebarDataProviderRequest request)
-    {
-        if (navItems is null)
-            navItems = GetNavItems();
-
-        return await Task.FromResult(request.ApplyTo(navItems));
-    }
-
-    private IEnumerable<NavItem> GetNavItems()
-    {
-        navItems = new List<NavItem>
-        {
-   
-
-            new NavItem { Id = "1", Href = "/", IconName = IconName.HouseDoorFill, Text = "Inicio", Match = NavLinkMatch.All },
-            new NavItem { Id = "2", Text = "ESTUDIANTE" },
-            new NavItem { Id = "3", Href = "aprendizaje", IconName = IconName.Person, Text = "Mi Aprendizaje", ParentId="2"},
-            new NavItem { Id = "4", Href = "cursos", IconName = IconName.Book, Text = "Cursos", ParentId="2" },
-            new NavItem { Id = "4", Href = "solicitudes", IconName = IconName.List, Text = "Mis solicitudes", ParentId="2" },
-            new NavItem { Id = "5", Href = "especialidades", IconName = IconName.Mortarboard, Text = "Especialidades", ParentId="2" },
-            new NavItem { Id = "6", Text = "CONFIGURACION" },
-            new NavItem { Id = "7", Href = "Periodo", IconName = IconName.Calendar, Text = "Periodo", ParentId="6" },
-            new NavItem { Id = "8", Href = "horarios", IconName = IconName.Clock, Text = "Horarios", ParentId="6" },
-            new NavItem { Id = "9", Href = "locales", IconName = IconName.Compass, Text = "Locales", ParentId="6" },
-            new NavItem { Id = "10", Href = "aulas", IconName = IconName.Building, Text = "Aulas", ParentId="6" },
-            new NavItem { Id = "11", Href = "usuarios", IconName = IconName.People, Text = "Usuarios", ParentId="6" },
-            new NavItem { Id = "12", Href = "roles", IconName = IconName.PersonBadge, Text = "Roles", ParentId="6" },
-            new NavItem { Id = "13", Text = "ACADEMICO" },
-            new NavItem { Id = "14", Href = "material", IconName = IconName.JournalText, Text = "Material", ParentId="13" },
-            new NavItem { Id = "15", Href = "estudiantes", IconName = IconName.PersonRaisedHand, Text = "Estudiantes" , ParentId="13"},
-            new NavItem { Id = "16", Href = "especialidadedff", IconName = IconName.MortarboardFill, Text = "Especialidades" , ParentId="13"},
-            new NavItem { Id = "17", Href = "modulos", IconName = IconName.Subtract, Text = "Modulos" , ParentId="13"},
-            new NavItem { Id = "18", Href = "plan", IconName = IconName.FileRuledFill, Text = "Plan Estudios" , ParentId="13"},
-            new NavItem { Id = "19", Href = "programaciones", IconName = IconName.Table, Text = "Programaciones" , ParentId="13"}
-        };
-
-        return navItems;
-    }
+    
 }
