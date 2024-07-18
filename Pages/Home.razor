@@ -11,19 +11,21 @@
 <div class="row" >
 @foreach (var item in tarjetas)
 {
-    <div class="col-sm-4 mb-3">
+    <div class="col-sm-4 mb-4">
     <Card Style="width:22rem;">
         <img class="rounded-top " src=@item.img height="200vh" />
         <CardBody >
             <CardTitle class="custom-card-title">@item.curso</CardTitle>
-                <div class="justify-content-between">
-                    <CardSubTitle Class="mb-2 text-muted">@item.local</CardSubTitle>
-                    <CardSubTitle Class="mb-2 text-muted "> @item.inicio.ToString(@"hh\:mm") - @item.final.ToString(@"hh\:mm")</CardSubTitle>
-                </div>
-                <div class="justify-content-between">
-                    <CardSubTitle Class="mb-2 text-muted custom-card-title">S/.@item.costo.ToString("0.00")</CardSubTitle>
-                    <Button Color="ButtonColor.Primary" To="#" Type="ButtonType.Link">Matricularse</Button>
-                </div>
+                    <CardSubTitle Class="mb-2 text-muted d-flex justify-content-between">
+                            <span><Icon Name="IconName.HouseDoorFill" /> @item.local</span>
+                            <span><Icon Name="IconName.Watch"/> @item.inicio.ToString(@"hh\:mm") - @item.final.ToString(@"hh\:mm")</span>
+                    </CardSubTitle>
+                    <CardSubTitle Class="mb-2 text-muted custom-card-title d-flex justify-content-between">
+                            <h3 style="font-weight:bold">S/.@item.costo.ToString("0.00")</h3>
+                            <Button Color="ButtonColor.Primary" To="#" Type="ButtonType.Link">Matricularse</Button>
+                     </CardSubTitle>
+                    
+               
         </CardBody>
     </Card>
     </div>
