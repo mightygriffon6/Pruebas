@@ -1,7 +1,7 @@
 ﻿@page "/Periodo"
 <link href="css/componentes.css" rel="stylesheet" />
 <h1>PERIODO</h1>
-<Modal @ref="modal" UseStaticBackdrop="true" CloseOnEscape="false" HeaderCssClass="custom-modal-header">
+<Modal @ref="modal" UseStaticBackdrop="true" CloseOnEscape="false" HeaderCssClass="custom-modal-header" >
     <HeaderTemplate>
         @TituloModal
     </HeaderTemplate>
@@ -38,14 +38,15 @@
                 <select type="text" class="form-control" list="estados" >
                     <option value="Vigente">Vigente</option>
                     <option value="Cerrado">Cerrado</option>
+                    <option value="Creado">Creado</option>
                 </select>
             </div>
         </div>
         
     </BodyTemplate>
     <FooterTemplate>
-        <Button Color="ButtonColor.Secondary" @onclick="OnHideModalClick">Cancelar</Button>
-        <Button Class="custom-primary-button" Color="ButtonColor.Primary">Guardar</Button>
+        <Button Color="ButtonColor.Danger" @onclick="OnHideModalClick">Cancelar</Button>
+        <Button  Color="ButtonColor.Success">Guardar</Button>
     </FooterTemplate>
 </Modal>
 <br/>

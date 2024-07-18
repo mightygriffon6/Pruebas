@@ -46,9 +46,9 @@ namespace Pruebas.Pages
             var options = new ConfirmDialogOptions
             {
                 YesButtonText = "SI",
-                YesButtonColor = ButtonColor.Danger,
+                YesButtonColor = ButtonColor.Success,
                 NoButtonText = "CANCELAR",
-                NoButtonColor = ButtonColor.Secondary,
+                NoButtonColor = ButtonColor.Danger,
                 HeaderCssClass = "custom-dialog-header",
             };
 

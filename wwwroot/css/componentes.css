@@ -1,10 +1,11 @@
 ﻿.custom-dialog-header {
-    background-color: rgb(220, 53, 69)!important;
+    background-color: rgb(0,108,125) !important;
     color: white;
 }
 .custom-modal-header {
-    background-color: rgb(220, 53, 69) !important;
+    background-color: rgb(0,108,125) !important;
     color: white !important;
+    font-weight: bold
 }
 .custom-header-grid {
     background-color: rgb(0,108,125); 
@@ -15,5 +16,10 @@
 }
 .custom-card-title{
     font-weight:bold;
+}
+h1 {
+    font-weight: bold;
+    color: rgb(20,56,127);
+    text-align:center;
 }
 
