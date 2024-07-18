@@ -103,11 +103,11 @@
                     @periodo.estado
                     </GridColumn>
                 <GridColumn TItem="PeriodoNormal" Context="periodo" HeaderText="Acciones">
-                    <Button Class="custom-primary-button" Color="ButtonColor.Primary" TooltipTitle="Editar" @onclick="Editar" Size="ButtonSize.Small"><Icon Name=" IconName.Pencil " /></Button>
-                    <Button Color="ButtonColor.Danger" TooltipTitle="Borrar Periodo" @onclick="BorrarPeriodo" Size="ButtonSize.Small"><Icon Name=" IconName.Trash" /></Button>
-                    <Button Color="ButtonColor.Danger" TooltipTitle="Bloquear Matrículas" @onclick="BloqMatriculas" Size="ButtonSize.Small"><Icon Name="IconName.PersonSquare" /></Button>
-                    <Button Color="ButtonColor.Danger" TooltipTitle="Bloquear Pagos" @onclick="BloqPagos" Size="ButtonSize.Small"><Icon Name="IconName.Coin" /></Button>
-                    <Button Color="ButtonColor.Danger" TooltipTitle="Bloquear Notas y Asistencias" @onclick="BloqNotasAsistencias" Size="ButtonSize.Small"><Icon Name="IconName.PersonVCardFill" /></Button>
+                    <Button  Class="custom-primary-button"  Color="ButtonColor.Primary" TooltipTitle="Editar" @onclick="Editar" Size="ButtonSize.Small"><Icon Name=" IconName.Pencil " /></Button>
+                    <Button Id="@periodo.id.ToString()" Color="ButtonColor.Danger" TooltipTitle="Borrar Periodo" @onclick="BorrarPeriodo" Size="ButtonSize.Small"><Icon Name=" IconName.Trash" /></Button>
+                    <Button Id="@periodo.id.ToString()" Color="ButtonColor.Danger" Outline="@matri" TooltipTitle="Bloquear Matrículas" @onclick="BloqMatriculas" Size="ButtonSize.Small"><Icon Name="IconName.PersonSquare" /></Button>
+                    <Button Id="@periodo.id.ToString()" Color="ButtonColor.Danger" Outline="@pago" TooltipTitle="Bloquear Pagos" @onclick="BloqPagos" Size="ButtonSize.Small"><Icon Name="IconName.Coin" /></Button>
+                    <Button Id="@periodo.id.ToString()" Color="ButtonColor.Danger" Outline="@nota" TooltipTitle="Bloquear Notas y Asistencias" @onclick="BloqNotasAsistencias" Size="ButtonSize.Small"><Icon Name="IconName.PersonVCardFill" /></Button>
                 </GridColumn>
             </GridColumns>
         </Grid>

@@ -1,6 +1,7 @@
 ﻿.custom-dialog-header {
     background-color: rgb(0,108,125) !important;
     color: white;
+    font-weight: bold;
 }
 .custom-modal-header {
     background-color: rgb(0,108,125) !important;

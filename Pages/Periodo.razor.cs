@@ -14,6 +14,10 @@ namespace Pruebas.Pages
         private ConfirmDialog dialog = default!;
         private DateTime primerDiaMes { get; set; }
         private DateTime ultimoDiaMes { get; set; }
+        private bool 
+            matri=true,
+            pago=true,
+            nota=true;
         
 
         private void CambioMes(ChangeEventArgs e)
@@ -65,10 +69,13 @@ namespace Pruebas.Pages
                     case "borrar":
                         break;
                     case "bloquearMat":
+                        matri = !matri;
                         break;
                     case "bloquearPag":
+                        pago = !pago;
                         break;
                     case "bloquearNotasAsist":
+                        nota = !nota;
                         break;
                 }
             }
@@ -101,7 +108,7 @@ namespace Pruebas.Pages
         }
         private async void BorrarPeriodo()
         {
-            tituloConfDialg = "¿Estás seguro que quieres Eliminar este periodo?";
+            tituloConfDialg = "¿Estás seguro que quieres eliminar este periodo?";
             mensajeConfDialg = "Eliminarás el periodo actual";
             accion = "borrar";
             await ShowConfirmationAsync();
@@ -116,15 +123,8 @@ namespace Pruebas.Pages
         new PeriodoNormal(5, new DateOnly(2027, 5, 1), new DateOnly(2027, 8, 31), "Completado"),
         new PeriodoNormal(6, new DateOnly(2028, 6, 1), new DateOnly(2028, 7, 31), "Activo"),
         new PeriodoNormal(7, new DateOnly(2029, 1, 1), new DateOnly(2029, 12, 31), "Activo"),
-        new PeriodoNormal(8, new DateOnly(2030, 2, 1), new DateOnly(2030, 11, 30), "Inactivo"),
-        new PeriodoNormal(9, new DateOnly(2031, 3, 1), new DateOnly(2031, 10, 31), "Activo"),
-        new PeriodoNormal(10, new DateOnly(2032, 4, 1), new DateOnly(2032, 9, 30), "Pendiente"),
-        new PeriodoNormal(11, new DateOnly(2033, 5, 1), new DateOnly(2033, 8, 31), "Completado"),
-        new PeriodoNormal(12, new DateOnly(2034, 6, 1), new DateOnly(2034, 7, 31), "Activo"),
-        new PeriodoNormal(13, new DateOnly(2035, 1, 1), new DateOnly(2035, 12, 31), "Activo"),
-        new PeriodoNormal(14, new DateOnly(2036, 2, 1), new DateOnly(2036, 11, 30), "Inactivo"),
-        new PeriodoNormal(15, new DateOnly(2042, 2, 1), new DateOnly(2042, 11, 30), "Inactivo")
-    };
+        new PeriodoNormal(8, new DateOnly(2030, 2, 1), new DateOnly(2030, 11, 30), "Inactivo")
+        };
 
         private async Task OnShowModalClick()
         {
