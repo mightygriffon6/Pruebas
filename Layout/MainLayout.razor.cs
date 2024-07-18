@@ -27,9 +27,7 @@ namespace Pruebas.Layout
             new NavItem { Id = "4", Href = "solicitudes", IconName = IconName.List, Text = "Mis solicitudes", ParentId="1" },
             new NavItem { Id = "5", Href = "especialidades", IconName = IconName.Mortarboard, Text = "Especialidades", ParentId="1" },
 
-
-
-            new NavItem { Id = "6", Text = "CONFIGURACION" },
+            new NavItem { Id = "6", IconName = IconName.Nut ,Text = "CONFIGURACION" },
             new NavItem { Id = "7", Href = "Periodo", IconName = IconName.Calendar, Text = "Periodo", ParentId="6" },
             new NavItem { Id = "8", Href = "horarios", IconName = IconName.Clock, Text = "Horarios", ParentId="6" },
             new NavItem { Id = "9", Href = "locales", IconName = IconName.Compass, Text = "Locales", ParentId="6" },
