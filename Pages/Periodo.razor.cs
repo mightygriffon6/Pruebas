@@ -74,37 +74,27 @@ namespace Pruebas.Pages
             }
             else
             {
-                switch (accion)
-                {
-                    case "borrar":
-                        break;
-                    case "bloquearMat":
-                        break;
-                    case "bloquearPag":
-                        break;
-                    case "bloquearNotasAsist":
-                        break;
-                }
+                accion = "";
             }
         }
         private async void BloqMatriculas()
         {
             tituloConfDialg = "¿Estás seguro que quieres bloquear las matriculas?";
-            mensajeConfDialg = "Bloquearás irreversiblemente las matrículas de este periodo";
+            mensajeConfDialg = "Bloquearás las matrículas de este periodo";
             accion = "bloquearMat";
             await ShowConfirmationAsync();
         }
         private async void BloqPagos()
         {
             tituloConfDialg = "¿Estás seguro que quieres bloquear los pagos de este periodo?";
-            mensajeConfDialg = "Bloquearás irreversiblemente los pagos de este periodo";
+            mensajeConfDialg = "Bloquearás  los pagos de este periodo";
             accion = "bloquearPag";
             await ShowConfirmationAsync();
         }
         private async void BloqNotasAsistencias()
         {
             tituloConfDialg = "¿Estás seguro que quieres bloquear las notas y las asistencias de este periodo?";
-            mensajeConfDialg = "Bloquearás irreversiblemente el registro de notas y asistencias de este periodo";
+            mensajeConfDialg = "Bloquearás el registro de notas y asistencias de este periodo";
             accion = "bloquearNotasAsist";
             await ShowConfirmationAsync();
 
