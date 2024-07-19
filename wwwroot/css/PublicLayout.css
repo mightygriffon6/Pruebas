@@ -10,7 +10,7 @@
 }
 
 .middle-row {
-    background-image: url('../images/fondoLogin.jpg'); 
+    
     background-size: cover;
     background-position: center;
     flex: 1;
@@ -18,7 +18,17 @@
     align-items: center;
     justify-content: center;
 }
+.left-column {
+    background-image: url('../images/fondoLogin.jpg');
+    flex: 0 0 50%; /* Ajusta el tamaño de la columna izquierda */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.right-column {
+    flex: 1; /* La columna derecha tomará el espacio restante */
+}
 .content {
     padding: 20px;
     background: rgba(255, 255, 255); 

@@ -10,8 +10,11 @@
              DataProvider="Sidebar2DataProvider"/>       
     <main>
         <div class="bb-top-row px-4 d-flex justify-content-between bb-top-row px-4 d-flex superior-row">
-            <Icon Name="IconName.List" role="button" @onclick="ToggleSidebar" />
-            <a href="/login" target="_blank">Ingresar/Registrarse</a>
+            <Icon Name="IconName.List" role="button" Color="IconColor.White" @onclick="ToggleSidebar" />
+                <span>
+                <Button To="/login" class="login-button" Color="ButtonColor.Light" Size="ButtonSize.Small">Iniciar Sesión</Button>
+                <Button To="/login" Class="login-button" Color="ButtonColor.Dark" Size="ButtonSize.Small">Registrarse</Button>
+                </span>
         </div>
         <article class="content px-4">
             <div class="py-2">
