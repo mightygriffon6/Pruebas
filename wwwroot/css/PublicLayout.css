@@ -19,15 +19,17 @@
     justify-content: center;
 }
 .left-column {
-    background-image: url('../images/fondoLogin.jpg');
-    flex: 0 0 50%; /* Ajusta el tamaño de la columna izquierda */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 1;
+    background-image: url('../images/loginizq.png');
+    background-size: contain;
 }
 
 .right-column {
-    flex: 1; /* La columna derecha tomará el espacio restante */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 .content {
     padding: 20px;
