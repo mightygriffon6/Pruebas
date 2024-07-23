@@ -1,12 +1,37 @@
 ﻿@layout PublicLayout
-@page "/Login"
+@page "/Registro"
 
 <meta name="google-signin-client_id" content="118413414465-47ibmgc5qletr48ltmodqrv1s0isce2q.apps.googleusercontent.com">
-<link href="css/login.css" rel="stylesheet" >
+<link href="css/login.css" rel="stylesheet">
 
 <div class="login-box center">
     <h1>BIENVENIDO A</h1>
     <img src="/images/infounsaLogin.jpg" class="center" />
+    <div class="row mb-3 justify-content-center">
+        <div class="col-md-6">
+            <label for="codigo" class=" labels-register">Nombres:</label>
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="codigo"  />
+        </div>
+    </div>
+    <div class="row mb-3 justify-content-center">
+        <div class="col-md-6">
+            <label for="codigo" class="form-label">Apellido Paterno:</label>
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="apPaterno" />
+        </div>
+    </div>
+    <div class="row mb-3 justify-content-center">
+        <div class="col-md-6">
+            <label for="codigo" class="form-label">Apellido Materno:</label>
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="apMaterno" />
+        </div>
+    </div>
+
     <script src="https://accounts.google.com/gsi/client" async></script>
     <div id="g_id_onload"
          data-client_id="118413414465-47ibmgc5qletr48ltmodqrv1s0isce2q.apps.googleusercontent.com"
@@ -28,8 +53,7 @@
     </div>
 </div>
 
-
 @code {
-    
-    
+
+
 }
