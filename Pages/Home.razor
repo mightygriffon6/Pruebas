@@ -7,21 +7,23 @@
     <Button @onclick="ShowGrid" class="@((showGrid) ? "active" : "")" Color="ButtonColor.Secondary"><Icon Name="IconName.Grid" /></Button>
     <Button @onclick="ShowTable" class="@((!showGrid) ? "active" : "")" Color="ButtonColor.Secondary"><Icon Name="IconName.ListTask"></Icon></Button>
 </div>
+
 @if (showGrid){
+@*
 <div class="row" >
 @foreach (var item in tarjetas)
 {
     <div class="col-sm-4 mb-4">
     <Card Style="width:22rem;">
-        <img class="rounded-top " src=@item.img height="200vh" />
+        <img class="rounded-top " src=@item.Img height="200vh" />
         <CardBody >
-            <CardTitle class="custom-card-title">@item.curso</CardTitle>
+            <CardTitle class="custom-card-title">@item.Curso</CardTitle>
                     <CardSubTitle Class="mb-2 text-muted d-flex justify-content-between">
-                            <span><Icon Name="IconName.HouseDoorFill" /> @item.local</span>
-                            <span><Icon Name="IconName.Watch"/> @item.inicio.ToString(@"hh\:mm") - @item.final.ToString(@"hh\:mm")</span>
+                            <span><Icon Name="IconName.HouseDoorFill" /> @item.Local</span>
+                            <span><Icon Name="IconName.Watch"/> @item.Horarios</span>
                     </CardSubTitle>
                     <CardSubTitle Class="mb-2 text-muted custom-card-title d-flex justify-content-between">
-                            <h3 style="font-weight:bold">S/.@item.costo.ToString("0.00")</h3>
+                            <h3 style="font-weight:bold">S/.@item.Costo.ToString("0.00")</h3>
                             <Button Color="ButtonColor.Primary" To="#" Type="ButtonType.Link">Matricularse</Button>
                      </CardSubTitle>
                     
@@ -31,6 +33,7 @@
     </div>
 }
 </div>
+*@
 }
 else{
 <Grid TItem="Tarjeta"
@@ -43,16 +46,20 @@ else{
 
         <GridColumns>
             <GridColumn TItem="Tarjeta" HeaderText="Curso" PropertyName="curso">
-                @context.curso
+                @context.Curso
             </GridColumn>
             <GridColumn TItem="Tarjeta" HeaderText="Costo" PropertyName="costo">
-                S/.@context.costo.ToString("0.00") 
+                S/.@context.Costo.ToString("0.00") 
             </GridColumn>
             <GridColumn TItem="Tarjeta" HeaderText="Local" PropertyName="local">
-                @context.local
+                @context.Local
             </GridColumn>
-            <GridColumn TItem="Tarjeta" HeaderText="Horario" PropertyName="horario">
-                @context.inicio.ToString(@"hh\:mm") - @context.final.ToString(@"hh\:mm")<!-- Muestra solo la fecha -->
+            @*<GridColumn TItem="Tarjeta" HeaderText="Horario" PropertyName="horario">
+                @context.inicio.ToString(@"hh\:mm") - @context.final.ToString(@"hh\:mm")
+            </GridColumn>
+            *@
+            <GridColumn TItem="Tarjeta" HeaderText="Dias" PropertyName="dias">
+                @context.Dias
             </GridColumn>
             <GridColumn TItem="Tarjeta" Context="tarjeta" HeaderText="Matricula">
                 <Button Color="ButtonColor.Primary" To="#" Type="ButtonType.Link">Matricularse</Button>
@@ -60,6 +67,7 @@ else{
 
         </GridColumns>
 </Grid>
+
 }
 @code{
 }
