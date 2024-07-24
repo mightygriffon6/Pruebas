@@ -12,14 +12,8 @@ namespace Pruebas.Pages
         private Modal modal = default!;
         private Modal cerrar = default!;
         private bool codEditar = false;
-        private ConfirmDialog dialog = default!;
         private DateTime primerDiaMes { get; set; }
         private DateTime ultimoDiaMes { get; set; }
-        private bool 
-            matri=true,
-            pago=true,
-            nota=true;
-        
 
         private void CambioMes(ChangeEventArgs e)
         {
