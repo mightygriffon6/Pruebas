@@ -2,14 +2,21 @@
 
 <PageTitle>Home</PageTitle>
 <link href="css/componentes.css" rel="stylesheet" />
+<img src="/images/placeholder.png" width="100%" height="200px"/>
+<hr>
+<div class="d-flex justify-content-between">
+    <h6 class="col-6"> (Esp) Curso de Especialidad   -   (Emp) Empresariales   -   (Lib) Libres</h6>
+    <input type="text" class="form-control col-6" id="codigo" placeholder="Escribe nombre de curso, especialidad o local..." size="20" />
+</div>
 <h1>El siguiente mes te ofrecemos</h1>
+    
 <div class="mb-3">
     <Button @onclick="ShowGrid" class="@((showGrid) ? "active" : "")" Color="ButtonColor.Secondary"><Icon Name="IconName.Grid" /></Button>
     <Button @onclick="ShowTable" class="@((!showGrid) ? "active" : "")" Color="ButtonColor.Secondary"><Icon Name="IconName.ListTask"></Icon></Button>
 </div>
 
 @if (showGrid){
-@*
+
 <div class="row" >
 @foreach (var item in tarjetas)
 {
@@ -19,9 +26,20 @@
         <CardBody >
             <CardTitle class="custom-card-title">@item.Curso</CardTitle>
                     <CardSubTitle Class="mb-2 text-muted d-flex justify-content-between">
-                            <span><Icon Name="IconName.HouseDoorFill" /> @item.Local</span>
-                            <span><Icon Name="IconName.Watch"/> @item.Horarios</span>
+                            <span><Icon Name="IconName.HouseDoorFill"/> @item.Local</span>
+                            <br>
+                            <span><Icon Name="IconName.Calendar3"/>@item.Dias</span>
+                            <span>
+                                <select type="text" class="form-control">
+                                    <option>--VerHorario--</option>
+                                    @foreach (string horario in @item.Horarios)
+                                    {
+                                        <option>@horario</option>
+                                    }
+                                </select>
+                            </span>
                     </CardSubTitle>
+                    <hr>
                     <CardSubTitle Class="mb-2 text-muted custom-card-title d-flex justify-content-between">
                             <h3 style="font-weight:bold">S/.@item.Costo.ToString("0.00")</h3>
                             <Button Color="ButtonColor.Primary" To="#" Type="ButtonType.Link">Matricularse</Button>
@@ -33,7 +51,7 @@
     </div>
 }
 </div>
-*@
+
 }
 else{
 <Grid TItem="Tarjeta"
@@ -53,11 +71,17 @@ else{
             </GridColumn>
             <GridColumn TItem="Tarjeta" HeaderText="Local" PropertyName="local">
                 @context.Local
+            </GridColumn>           
+            <GridColumn TItem="Tarjeta" HeaderText="Horario" PropertyName="horario">
+                <select type ="text" class="form-control" list="estados">
+                    <option>--Ver horario--</option>
+                    @foreach(string horario in context.Horarios)
+                    {
+                        <option>@horario</option>
+                    }
+                </select>
             </GridColumn>
-            @*<GridColumn TItem="Tarjeta" HeaderText="Horario" PropertyName="horario">
-                @context.inicio.ToString(@"hh\:mm") - @context.final.ToString(@"hh\:mm")
-            </GridColumn>
-            *@
+            
             <GridColumn TItem="Tarjeta" HeaderText="Dias" PropertyName="dias">
                 @context.Dias
             </GridColumn>

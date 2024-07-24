@@ -71,7 +71,7 @@ namespace Pruebas.Pages
         public string Curso { get; set; }
         public string Local { get; set; }
         public string Dias { get; set; }
-        public ArrayList Horarios { get; set; }
+        public List<string> Horarios { get; set; }
 
         public Tarjeta(decimal costo, string img, string curso, string local)
         {
@@ -80,12 +80,13 @@ namespace Pruebas.Pages
             Curso = curso;
             Local = local;
             Dias = "";
-            Horarios = new ArrayList();
+            Horarios = new List<string>();
         }
 
         public void AgregarHorario(TimeSpan inicio, TimeSpan final)
         {
-            Horarios.Add(new { Inicio = inicio, Final = final });
+            string horario = $"{inicio.ToString(@"hh\:mm")}-{final.ToString(@"hh\:mm")}";
+            Horarios.Add(horario);
         }
     }
 
