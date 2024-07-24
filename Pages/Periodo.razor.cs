@@ -6,10 +6,11 @@ namespace Pruebas.Pages
     public partial class Periodo
     {
         protected string TituloModal = "";
-        protected string tituloConfDialg = "", mensajeConfDialg = "";
+        protected string TituloModalCerrar = "";
         protected string accion = "";
         protected Button botonaccion = default!;
         private Modal modal = default!;
+        private Modal cerrar = default!;
         private bool codEditar = false;
         private ConfirmDialog dialog = default!;
         private DateTime primerDiaMes { get; set; }
@@ -28,7 +29,6 @@ namespace Pruebas.Pages
                 var lastDayOfMonth = new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
                 ultimoDiaMes = lastDayOfMonth;
             }
-
         }
 
         private async void Nuevo()
@@ -45,73 +45,22 @@ namespace Pruebas.Pages
             TituloModal = "Editar Periodo";
             await OnShowModalClick();
         }
-        private async Task ShowConfirmationAsync()
-        {
-            var options = new ConfirmDialogOptions
-            {
-                YesButtonText = "SI",
-                YesButtonColor = ButtonColor.Success,
-                NoButtonText = "CANCELAR",
-                NoButtonColor = ButtonColor.Danger,
-                HeaderCssClass = "custom-dialog-header",
-            };
-
-            var confirmation = await dialog.ShowAsync(
-                title: tituloConfDialg,
-                message1: mensajeConfDialg,
-                message2: "¿Quieres Continuar?",
-                confirmDialogOptions: options);
-
-            if (confirmation)
-            {
-                switch (accion)
-                {
-                    case "borrar":
-                        break;
-                    case "bloquearMat":
-                        matri = !matri;
-                        break;
-                    case "bloquearPag":
-                        pago = !pago;
-                        break;
-                    case "bloquearNotasAsist":
-                        nota = !nota;
-                        break;
-                }
-            }
-            else
-            {
-                accion = "";
-            }
-        }
-        private async void BloqMatriculas()
-        {
-            tituloConfDialg = "¿Estás seguro que quieres bloquear las matriculas?";
-            mensajeConfDialg = "Bloquearás las matrículas de este periodo";
-            accion = "bloquearMat";
-            await ShowConfirmationAsync();
+        private async void BloqMatriculas() {
+            accion = "bloqMatri";
+            TituloModalCerrar = "Cerrar Matrículas";
+            await cerrar.ShowAsync();
         }
         private async void BloqPagos()
         {
-            tituloConfDialg = "¿Estás seguro que quieres bloquear los pagos de este periodo?";
-            mensajeConfDialg = "Bloquearás  los pagos de este periodo";
-            accion = "bloquearPag";
-            await ShowConfirmationAsync();
+            accion = "bloqPago";
+            TituloModalCerrar = "Cerrar Pagos";
+            await cerrar.ShowAsync();
         }
         private async void BloqNotasAsistencias()
         {
-            tituloConfDialg = "¿Estás seguro que quieres bloquear las notas y las asistencias de este periodo?";
-            mensajeConfDialg = "Bloquearás el registro de notas y asistencias de este periodo";
-            accion = "bloquearNotasAsist";
-            await ShowConfirmationAsync();
-
-        }
-        private async void BorrarPeriodo()
-        {
-            tituloConfDialg = "¿Estás seguro que quieres eliminar este periodo?";
-            mensajeConfDialg = "Eliminarás el periodo actual";
-            accion = "borrar";
-            await ShowConfirmationAsync();
+            accion = "bloqNotaAsist";
+            TituloModalCerrar = "Cerrar Notas y Asistencias";
+            await cerrar.ShowAsync();
         }
 
         private List<PeriodoNormal> periodos = new List<PeriodoNormal>
@@ -135,6 +84,7 @@ namespace Pruebas.Pages
         {
             await modal.HideAsync();
         }
+        
     }
     public class PeriodoNormal
     {

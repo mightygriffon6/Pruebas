@@ -49,8 +49,34 @@
         <Button  Color="ButtonColor.Success">Guardar</Button>
     </FooterTemplate>
 </Modal>
+<Modal @ref="cerrar" UseStaticBackdrop="true" CloseOnEscape="false" HeaderCssClass="custom-modal-header">
+    <HeaderTemplate>
+        @TituloModalCerrar
+    </HeaderTemplate>
+    <BodyTemplate>
+    <div class="row mb-3 justify-content-center">
+        <div class="col-md-3">
+            <label for="codigo" class="form-label">Fecha:</label>
+        </div>
+        <div class="col-md-6">
+            <input type="month" @onchange="CambioMes" class="form-control" id="codigo" disabled="@codEditar" />
+        </div>
+    </div>
+    <div class="row mb-3 justify-content-center">
+        <div class="col-md-3 ">
+            <label for="horaCierre" class="form-label">Hora:</label>
+        </div>
+        <div class="col-md-6 ">
+            <input type="time" @bind="primerDiaMes" class="form-control" id="horaCierre" placeholder="Ingresa la hora" />
+        </div>
+    </div>
+    </BodyTemplate>
+    <FooterTemplate>
+        <Button Color="ButtonColor.Danger" @onclick="() => cerrar?.HideAsync()">Cancelar</Button>
+        <Button Color="ButtonColor.Success">Guardar</Button>
+    </FooterTemplate>
+</Modal>
 <br/>
-<ConfirmDialog @ref="dialog"  />
 <div class="mb-3">
     <Button Class="custom-primary-button" Color="ButtonColor.Primary" @onclick="Nuevo"> <Icon Name="IconName.PlusCircle" /> Nuevo</Button>
 </div>
@@ -103,11 +129,11 @@
                     @periodo.estado
                     </GridColumn>
                 <GridColumn TItem="PeriodoNormal" Context="periodo" HeaderText="Acciones">
-                    <Button  Class="custom-primary-button"  Color="ButtonColor.Primary" TooltipTitle="Editar" @onclick="Editar" Size="ButtonSize.Small"><Icon Name=" IconName.Pencil " /></Button>
-                    <Button Id="@periodo.id.ToString()" Color="ButtonColor.Danger" TooltipTitle="Borrar Periodo" @onclick="BorrarPeriodo" Size="ButtonSize.Small"><Icon Name=" IconName.Trash" /></Button>
-                    <Button Id="@periodo.id.ToString()" Color="ButtonColor.Danger" Outline="@matri" TooltipTitle="Bloquear Matrículas" @onclick="BloqMatriculas" Size="ButtonSize.Small"><Icon Name="IconName.PersonSquare" /></Button>
-                    <Button Id="@periodo.id.ToString()" Color="ButtonColor.Danger" Outline="@pago" TooltipTitle="Bloquear Pagos" @onclick="BloqPagos" Size="ButtonSize.Small"><Icon Name="IconName.Coin" /></Button>
-                    <Button Id="@periodo.id.ToString()" Color="ButtonColor.Danger" Outline="@nota" TooltipTitle="Bloquear Notas y Asistencias" @onclick="BloqNotasAsistencias" Size="ButtonSize.Small"><Icon Name="IconName.PersonVCardFill" /></Button>
+                    <Button Id="@periodo.id.ToString()" Class="custom-primary-button" Color="ButtonColor.Primary" TooltipTitle="Editar" @onclick="Editar" Size="ButtonSize.Small"><Icon Name=" IconName.Pencil " /></Button>
+                    <Button Id="@periodo.id.ToString()" Class="custom-primary-button" Color="ButtonColor.Primary" TooltipTitle="Bloquear Matrículas" @onclick="BloqMatriculas" Size="ButtonSize.Small"><Icon Name="IconName.PersonSquare" /></Button>
+                    <Button Id="@periodo.id.ToString()" Class="custom-primary-button" Color="ButtonColor.Primary" TooltipTitle="Bloquear Pagos" @onclick="BloqPagos" Size="ButtonSize.Small"><Icon Name="IconName.Coin" /></Button>
+                    <Button Id="@periodo.id.ToString()" Class="custom-primary-button" Color="ButtonColor.Primary" TooltipTitle="Bloquear Notas y Asistencias" @onclick="BloqNotasAsistencias" Size="ButtonSize.Small"><Icon Name="IconName.PersonVCardFill" /></Button>
+                    <Button Id="@periodo.id.ToString()" Color="ButtonColor.Danger" TooltipTitle="Borrar Periodo" Size="ButtonSize.Small"><Icon Name=" IconName.Trash" /></Button>
                 </GridColumn>
             </GridColumns>
         </Grid>
