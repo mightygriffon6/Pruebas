@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,17 +8,13 @@
 
   <ItemGroup>
     <Content Remove="Pages\Component.razor" />
-    <Content Remove="Pages\Locales.razor" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Blazor.Bootstrap" Version="3.0.0-preview.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.6" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Locales.razor" />
+	<PackageReference Include="Microsoft.AspNetCore"/>
   </ItemGroup>
 
   <ItemGroup>
@@ -26,8 +22,6 @@
     <_ContentIncludedByDefault Remove="wwwroot\css\PublicLayout.css" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="Pages\Locales.razor" />
-  </ItemGroup>
+
 
 </Project>
